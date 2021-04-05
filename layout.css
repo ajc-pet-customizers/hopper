@@ -183,7 +183,7 @@ a:hover {
 }
 
 .hopper_container {
-  background-image: url("misc_assets/hopper bg.png");
+  background-image: url("misc_assets/light bg.png");
   background-color: transparent;
   background-size: contain;
   width: 34vw;
