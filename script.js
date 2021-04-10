@@ -10,7 +10,6 @@ setEyeButtons();
 setOtherButtons();
 
 updateColor("white");
-updateBase();
 updateEye("happy","white");
 updateAsset("antennae","45 degree");
 updateAsset("hair","mohawk");
@@ -18,6 +17,37 @@ updateAsset("pattern","no pattern");
 
 document.getElementById("save").addEventListener("click", function() { mergeImages("save"); } );
 document.getElementById("new_tab").addEventListener("click", function() { mergeImages("new_tab"); } );
+document.getElementById("randomize").addEventListener("click", function() { randomize(); } );
+document.getElementById("bg_contrast").addEventListener("click", function() { flip_bg(); } );
+light = true;
+
+function randomize() {
+  var randfeatures = [["dark red", "light red", "dark pink", "light pink", "dark purple", "light purple", "black", "white", "dark blue", "teal", "burple", "yellow", "dark green", "medium green", "lime", "mint", "dark brown", "light brown", "orange", "mustard"],["lash","boy","happy","squint","angry","swirl"],["blocky", "dewdrop", "45 degree", "swooshback"], ["bald","tuft","fork","mohawk"], ["no pattern", "mask","diamond","nosedot"]];
+  var randoms = []
+
+  for (var i = 0; i < randfeatures.length; i++) {
+    if (i==0) {
+      randoms.push(randfeatures[i][Math.floor(Math.random()*randfeatures[i].length)])
+    }
+    randoms.push(randfeatures[i][Math.floor(Math.random()*randfeatures[i].length)]);
+  }
+  updateColor(randoms[0]);
+  updateEye(features.get("eyeAsset"),randoms[1]);
+  updateEye(randoms[2],features.get("color")[1]);
+  updateAsset("antennae",randoms[3]);
+  updateAsset("hair",randoms[4]);
+  updateAsset("pattern",randoms[5]);
+}
+
+function flip_bg() {
+  if (!light) {
+    document.getElementById("hopper_container").style.backgroundImage = "url('misc_assets/light bg.png'"+")";
+  }
+  else {
+    document.getElementById("hopper_container").style.backgroundImage = "url('misc_assets/dark bg.png'"+")";
+  }
+  light = !light;
+}
 
 function setColorButtons(className) {
 var colorNames = ["dark red", "light red", "dark pink", "light pink", "dark purple", "light purple", "black", "white", "dark blue", "teal", "burple", "yellow", "dark green", "medium green", "lime", "mint", "dark brown", "light brown", "orange", "mustard"];
