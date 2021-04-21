@@ -12,6 +12,8 @@ Welcome to the Hopper Customizer's GitHub page! This project (website located at
 * Accurate renditions of hoppers seen in-game
 * Ability to save your hopper as a .png file with transparent background
 * Ability to open the hopper's image in a new tab to look closer
+* Ability to randomly generate a hopper
+* Ability to toggle background color
 
 # Notes
 * Completely safe to use: your personal data is not accessed or stored anywhere and website requires no AJC account information
@@ -21,7 +23,7 @@ Welcome to the Hopper Customizer's GitHub page! This project (website located at
 * Please respect the watermark: by keeping it, you grant me credit for the image :)
 
 # Support
-If you have any questions, suggestions, or happen to spot a bug (no, not the grasshopper kind!), feel free to [send me a message](https://aj-item-worth.fandom.com/wiki/Message_Wall:BrightSunshine) on the Animal Jam Item Worth Wiki (AJIWW). I am not actively monitoring this GitHub account.
+If you have any questions, suggestions, or happen to spot a bug, feel free to [send me a message](https://aj-item-worth.fandom.com/wiki/Message_Wall:BrightSunshine) on the Animal Jam Item Worth Wiki (AJIWW). I am not actively monitoring this GitHub account.
 
 # Credits
 Inspired by previous implementations of customizers, namely from [Birdieovo](https://aj-item-worth.fandom.com/wiki/User:Birdieovo) and [SpatterSpot1 AJ](https://aj-item-worth.fandom.com/wiki/User:SpatterSpot1_AJ%27s_other_ac_bc_she_frogot_her_login), and my appreciation of hoppers. Website code is written entirely by me, [BrightSunshine](https://aj-item-worth.fandom.com/wiki/User:BrightSunshine); fonts and some assets have been adapted from the [Animal Jam Archives](https://www.animaljamarchives.com/). This website constitutes fair-use of original material created by [WildWorks](https://www.wildworks.com/).
