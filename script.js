@@ -1,3 +1,5 @@
+document.getElementById("close").addEventListener("click", function() { document.getElementById("notice").style.visibility = "hidden"; } );
+
 var features = new Map();
 features.set("color",["white","white"]);
 features.set("antennae","45 degree");
