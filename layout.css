@@ -1,6 +1,6 @@
 .notice {
   width:100%;
-  height:10vw;
+  height:15vw;
   display:flex;
   justify-content:center;
   align-items:center;
@@ -13,6 +13,8 @@
   text-align:center;
   z-index:500;
   flex-direction: column;
+  line-height:1.6em;
+  
 }
 
 .close {
@@ -26,6 +28,21 @@
 }
 
 .close:hover {
+  text-decoration:underline;
+  color: #FBB148;
+}
+
+.open {
+  cursor:pointer;
+  background:none;
+  border:none;
+  font-weight:bold;
+  font-family:DigitalDelivery;
+  font-size:1.3vw;
+  color: #CFA455;
+}
+
+.open:hover {
   text-decoration:underline;
   color: #FBB148;
 }
@@ -294,6 +311,48 @@ a:hover {
   left: 81.5%;
   background-image: url("button_assets/bg contrast button.png");
 }
+
+.button.worth {
+  transform: translate(-30%);
+  left: 30%;
+  top: -6.35vw;
+  background-image: url("button_assets/worth button.png");
+}
+
+.sign {
+  position: absolute;
+  top: 0;
+  right: 9vw;
+  z-index: 100;
+  width:19vw;
+}
+
+.worth_text {
+  text-align:left;
+  position: absolute;
+  right: 6vw;
+  z-index: 110;
+  font-family:DigitalDelivery;
+  color:#F5F2E1;
+  font-size:1.25vw;
+  width:20vw;
+}
+
+.range {
+  top: 3.8vw;
+}
+
+.demand {
+  top: 5.45vw;
+}
+
+.disclaimer {
+  top: 7.6vw;
+  right:14.6vw;
+  color:#CFA455;
+  font-size:.7vw;
+  width:auto;
+} 
 
 .footer2 {
   font-size: 0.9vw;

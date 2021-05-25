@@ -1,4 +1,5 @@
-// document.getElementById("close").addEventListener("click", function() { document.getElementById("notice").style.visibility = "hidden"; } );
+document.getElementById("close").addEventListener("click", function() { document.getElementById("notice").style.visibility = "hidden"; } );
+document.getElementById("disclaimer").addEventListener("click", function() { document.getElementById("notice").style.visibility = "visible"; } );
 
 var features = new Map();
 features.set("color",["white","white"]);
@@ -131,6 +132,7 @@ function updateColor(newColor) {
   updateAsset("antennae",features.get("antennae"));
   updateAsset("pattern",features.get("pattern"));
   updateAsset("hair",features.get("hair"));
+  getWorth();
 }
 
 function updateBase() {
@@ -162,6 +164,7 @@ function updateEye(asset,color) {
   updateBorders(features.get("eyeAsset"),asset);
   features.set("eyeAsset",asset);
   features.set("color",[features.get("color")[0],color]);
+  getWorth();
 }
 
 function updateAsset(type, asset) {
@@ -173,6 +176,7 @@ function updateAsset(type, asset) {
   }
   updateBorders(features.get(type),asset);
   features.set(type,asset);
+  getWorth();
 }
 
 function mergeImages(type) {
@@ -225,4 +229,155 @@ antennae.onload = function() {
       }
     }
   }
+}
+
+function calcWorth() {
+  var worth = 0.125;
+  uncommons = ["dark red","light red","light brown","dark brown","mustard","orange","yellow","burple"];
+  mediums = ["white","black","happy","squint"];
+  kinda_commons = ["teal","dark blue","light purple","dark purple","light pink","dark pink"]
+
+  if (features.get("eyeAsset") == "boy") {
+    worth *= 2.5;
+  }
+  if (mediums.includes(features.get("eyeAsset"))) {
+    worth *= 3.7;
+  }
+  if (features.get("eyeAsset") == "angry") {
+    worth *= 4.2;
+  }
+  if (features.get("eyeAsset") == "swirl") {
+    worth *= 5.2; 
+  }
+  //if (features.get("pattern") == "mask" ) { worth *= .9; }
+  if (features.get("pattern") == "diamond" ) { worth *= 1.25; }
+  var min_worth = worth;
+  var max_worth = worth;
+  if (uncommons.includes(features.get("color")[0])) {
+    worth *= 2.75;
+    min_worth *= 2.5;
+    max_worth *= 3;
+  }
+  if (mediums.includes(features.get("color")[0])) {
+    worth *= 1.5;
+    min_worth *= 1.4;
+    max_worth *= 1.6;
+  }
+  if (kinda_commons.includes(features.get("color")[0])) {
+    worth *= 1.4;
+    min_worth *= 1.3;
+    max_worth *= 1.5;
+  }
+  if (features.get("hair") == "mohawk") {
+    min_worth *= 1.8;
+    max_worth *= 1.9;
+  }
+  if (features.get("pattern") == "no pattern") {
+    min_worth *= 1.6;
+    max_worth *= 1.7;
+  }
+  if (features.get("pattern") == "nosedot") {
+    min_worth *= 1.5;
+    max_worth *= 1.6;
+  }
+  if (features.get("color")[0] == features.get("color")[1]) {
+    min_worth *= 1.1;
+    max_worth *= 1.25;
+  }
+  if (uncommons.includes(features.get("color")[0]) && features.get("eyeAsset") == "swirl") { min_worth*= .8; max_worth *= .7; }
+  return [min_worth,max_worth];
+}
+
+function getWorthString(worth) {
+  var solids = Math.floor(worth);
+  var dec = worth-solids;
+  var dec_string = "";
+  var dec_rounded = Math.round(dec/0.125);
+  if (solids >= 2) {
+  	if (dec_rounded >= 6) {
+    	dec_rounded = 8;
+    }
+    if (dec_rounded <= 2) {
+    	dec_rounded = 0;
+    }
+    if (dec_rounded == 5 || dec_rounded == 3) {
+    	dec_rounded = 4;
+    }
+  }
+  if (dec_rounded == 1) {
+    dec_string = "bad";
+  }
+  if (dec_rounded == 2) {
+    dec_string = "blue";
+  }
+  if (dec_rounded == 3) {
+    dec_string = "red";
+  }
+  if (dec_rounded == 4) {
+    dec_string = ".5";
+  }
+  if (dec_rounded == 5) {
+    dec_string = "2 good";
+  }
+  if (dec_rounded == 6) {
+    dec_string = "2 red";
+  }
+  if (dec_rounded == 7) {
+    //dec_string = "2 red+bad";
+    solids+=1;
+  }
+  if (dec_rounded == 8) {
+    solids+=1;
+  }
+  if (solids < 1) { 
+    return (dec_string);
+  }
+  else if ([0,4,7,8].includes(dec_rounded)) { 
+    return (solids+dec_string); 
+  }
+  else { return (solids+"+"+dec_string); }
+}
+
+function getWorth() {
+  worths = calcWorth();
+  min = getWorthString(worths[0]);
+  max = getWorthString(worths[1]);
+  getDemand();
+  if (min === max) {
+    document.getElementById("range").innerHTML = "<b>Worth:</b> "+min;
+  }
+  else { 
+    document.getElementById("range").innerHTML = "<b>Worth:</b> "+min+" - "+max; 
+  }
+  //document.getElementById("demand").innerHTML = "<b>Demand:</b> "+demand;
+}
+
+function getDemand() { 
+  var demand = 0;
+  var temp = features.get("color").slice();
+  var colors = temp.sort();
+  var has_cc = false;
+  var color_combos = [["dark green","dark red"],["dark red","medium green"],["dark red","lime"],["dark green","light red"],["light red","medium green"],["light red","lime"],["black","orange"],["dark pink","dark red"],["dark red","light pink"],["dark pink","light red"],["light pink","light red"],["dark purple","orange"],["light purple","orange"],["light red","yellow"],["light red","mustard"],["dark blue","yellow"],["light pink","mint"],["light pink","teal"],["light brown","light pink"],["dark brown","orange"],["white","yellow"],["mustard","white"],["dark green","orange"],["medium green","orange"],["lime","orange"],["dark green","light purple"],["light purple","medium green"],["light purple","lime"],["dark green","dark purple"],["dark purple","medium green"],["dark purple","lime"],["dark blue","dark green"],["dark blue","medium green"],["dark blue","lime"]];
+  for (var i = 0; i < color_combos.length; i++) {
+    if (color_combos[i][0] == colors[0] && color_combos[i][1] == colors[1]) {
+      has_cc = true;
+      demand+=0.5; 
+    }
+  }
+  if (!["mint","lime","medium green","dark green"].includes(features.get("color")[0])) { demand=demand+0.5; }
+  if (features.get("color")[0] == features.get("color")[1]) { demand+=0.5; }
+  if (features.get("hair") == "mohawk") { demand=demand+1.5; }
+  if (features.get("pattern") != "mask") { demand+=1.5; }
+  if (features.get("pattern") == "diamond") { demand-=0.5; }
+  if (["happy","squint","angry"].includes(features.get("eyeAsset"))) { demand++; }
+  if (["boy","swirl"].includes(features.get("eyeAsset"))) { demand+=0.5; }
+  if (uncommons.includes(features.get("color")[0]) && features.get("eyeAsset") == "swirl") { 
+    if (has_cc == false) { demand--; }
+  }
+  document.getElementById("demand").innerHTML = "<b>Demand:</b> "+"<i class=\"material-icons-outlined\" style=\"font-size:120%;position:relative;top:.3vw;\">star</i>".repeat(Math.floor(demand));
+  if (demand%1 == 0.5) { 
+    document.getElementById("demand").innerHTML = document.getElementById("demand").innerHTML+"<i class=\"material-icons-outlined\" style=\"font-size:120%;position:relative;top:.3vw;\">star_half</i>"; 
+  }
+  document.getElementById("demand").innerHTML = document.getElementById("demand").innerHTML+"<i class=\"material-icons-outlined\" style=\"font-size:120%;position:relative;top:.3vw;\">star_outline</i>".repeat(Math.floor(5-demand));
+  //return "★".repeat(demand)+"☆".repeat(5-demand);
 }
