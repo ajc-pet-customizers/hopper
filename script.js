@@ -255,8 +255,8 @@ function calcWorth() {
   var max_worth = worth;
   if (uncommons.includes(features.get("color")[0])) {
     worth *= 2.75;
-    min_worth *= 2.5;
-    max_worth *= 3;
+    min_worth *= 2.75;
+    max_worth *= 3.2;
   }
   if (mediums.includes(features.get("color")[0])) {
     worth *= 1.5;
@@ -284,7 +284,10 @@ function calcWorth() {
     min_worth *= 1.1;
     max_worth *= 1.25;
   }
-  if (uncommons.includes(features.get("color")[0]) && features.get("eyeAsset") == "swirl") { min_worth*= .8; max_worth *= .7; }
+  if (features.get("eyeAsset") == "swirl" && (features.get("pattern") == "no pattern" || features.get("pattern") == "nosedot")) {
+    min_worth *= 0.8;
+    max_worth *= 0.8;
+  } 
   return [min_worth,max_worth];
 }
 
@@ -357,7 +360,7 @@ function getDemand() {
   var temp = features.get("color").slice();
   var colors = temp.sort();
   var has_cc = false;
-  var color_combos = [["dark green","dark red"],["dark red","medium green"],["dark red","lime"],["dark green","light red"],["light red","medium green"],["light red","lime"],["black","orange"],["dark pink","dark red"],["dark red","light pink"],["dark pink","light red"],["light pink","light red"],["dark purple","orange"],["light purple","orange"],["light red","yellow"],["light red","mustard"],["dark blue","yellow"],["light pink","mint"],["light pink","teal"],["light brown","light pink"],["dark brown","orange"],["white","yellow"],["mustard","white"],["dark green","orange"],["medium green","orange"],["lime","orange"],["dark green","light purple"],["light purple","medium green"],["light purple","lime"],["dark green","dark purple"],["dark purple","medium green"],["dark purple","lime"],["dark blue","dark green"],["dark blue","medium green"],["dark blue","lime"]];
+  var color_combos = [["dark green","dark red"],["dark red","medium green"],["dark red","lime"],["dark green","light red"],["light red","medium green"],["light red","lime"],["black","orange"],["dark pink","dark red"],["dark red","light pink"],["dark pink","light red"],["light pink","light red"],["dark purple","orange"],["light purple","orange"],["light red","yellow"],["light red","mustard"],["dark blue","yellow"],["light pink","mint"],["light pink","teal"],["light brown","light pink"],["dark brown","orange"],["white","yellow"],["mustard","white"],["dark green","orange"],["medium green","orange"],["lime","orange"],["dark green","light purple"],["light purple","medium green"],["light purple","lime"],["dark green","dark purple"],["dark purple","medium green"],["dark purple","lime"],["dark blue","dark green"],["dark blue","medium green"],["dark blue","lime"],["dark red","light red"],["dark pink","light pink"],["dark purple","light purple"],["dark blue","teal"],["burple","light purple"],["light pink","light purple"],["mustard","yellow"],["mustard","orange"],["dark brown","light brown"],["mint","teal"]];
   for (var i = 0; i < color_combos.length; i++) {
     if (color_combos[i][0] == colors[0] && color_combos[i][1] == colors[1]) {
       has_cc = true;
