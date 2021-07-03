@@ -1,6 +1,6 @@
 .notice {
   width:100%;
-  height:15vw;
+  height:18vw;
   display:flex;
   justify-content:center;
   align-items:center;
@@ -348,10 +348,8 @@ a:hover {
 
 .disclaimer {
   top: 7.6vw;
-  right:14.6vw;
   color:#CFA455;
   font-size:.7vw;
-  width:auto;
 } 
 
 .footer2 {
