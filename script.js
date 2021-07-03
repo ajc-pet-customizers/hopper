@@ -232,7 +232,7 @@ antennae.onload = function() {
 }
 
 function calcWorth() {
-  var worth = 0.125;
+  var worth = 0.2;
   uncommons = ["dark red","light red","light brown","dark brown","mustard","orange","yellow","burple"];
   mediums = ["white","black","happy","squint"];
   kinda_commons = ["teal","dark blue","light purple","dark purple","light pink","dark pink"]
@@ -241,10 +241,10 @@ function calcWorth() {
     worth *= 2.5;
   }
   if (mediums.includes(features.get("eyeAsset"))) {
-    worth *= 3.7;
+    worth *= 3.5;
   }
   if (features.get("eyeAsset") == "angry") {
-    worth *= 4.2;
+    worth *= 4;
   }
   if (features.get("eyeAsset") == "swirl") {
     worth *= 5.2; 
@@ -254,9 +254,9 @@ function calcWorth() {
   var min_worth = worth;
   var max_worth = worth;
   if (uncommons.includes(features.get("color")[0])) {
-    worth *= 2.75;
-    min_worth *= 2.75;
-    max_worth *= 3.2;
+    worth *= 2.5;
+    min_worth *= 2.4;
+    max_worth *= 2.8;
   }
   if (mediums.includes(features.get("color")[0])) {
     worth *= 1.5;
@@ -269,24 +269,28 @@ function calcWorth() {
     max_worth *= 1.5;
   }
   if (features.get("hair") == "mohawk") {
-    min_worth *= 1.8;
-    max_worth *= 1.9;
-  }
-  if (features.get("pattern") == "no pattern") {
     min_worth *= 1.6;
     max_worth *= 1.7;
   }
-  if (features.get("pattern") == "nosedot") {
+  if (features.get("pattern") == "no pattern") {
     min_worth *= 1.5;
     max_worth *= 1.6;
+  }
+  if (features.get("pattern") == "nosedot") {
+    min_worth *= 1.4;
+    max_worth *= 1.5;
   }
   if (features.get("color")[0] == features.get("color")[1]) {
     min_worth *= 1.1;
     max_worth *= 1.25;
   }
   if (features.get("eyeAsset") == "swirl" && (features.get("pattern") == "no pattern" || features.get("pattern") == "nosedot")) {
-    min_worth *= 0.8;
+    min_worth *= 0.7;
     max_worth *= 0.8;
+    if (uncommons.includes(features.get("color")[0])) {
+      min_worth *= 0.7;
+      max_worth *= 0.8;
+    }
   } 
   return [min_worth,max_worth];
 }
