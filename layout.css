@@ -11,7 +11,7 @@
      linear-gradient(white,white) padding-box,
      linear-gradient(to bottom,#ff8080, #ffc375, #fff875, #b3ff75, #75ffe8,#75daff,#d89eff) border-box;
   */
-  animation: fade 2.5s linear;
+  animation: fade 10s linear;
   //-webkit-animation: spin 2s linear infinite;
   //animation: spin 2s linear infinite;
 }
@@ -21,8 +21,8 @@
   top:0;
   left:0;
   position:fixed;
-  width:100vw; 
-  height:100vh;
+  width:100%; 
+  height:100%;
   z-index:9990;
   display:flex;
   flex-direction: column;
