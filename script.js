@@ -1,5 +1,5 @@
-document.getElementById("close").addEventListener("click", function() { document.getElementById("notice").style.visibility = "hidden"; } );
-document.getElementById("disclaimer").addEventListener("click", function() { document.getElementById("notice").style.visibility = "visible"; } );
+//document.getElementById("close").addEventListener("click", function() { document.getElementById("notice").style.visibility = "hidden"; } );
+//document.getElementById("disclaimer").addEventListener("click", function() { document.getElementById("notice").style.visibility = "visible"; } );
 
 var features = new Map();
 features.set("color",["white","white"]);
