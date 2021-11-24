@@ -141,7 +141,7 @@ function updateColor(newColor) {
   updateAsset("antennae",features.get("antennae"));
   updateAsset("pattern",features.get("pattern"));
   updateAsset("hair",features.get("hair"));
-  getWorth();
+  //getWorth();
 }
 
 function updateBase() {
@@ -173,7 +173,7 @@ function updateEye(asset,color) {
   updateBorders(features.get("eyeAsset"),asset);
   features.set("eyeAsset",asset);
   features.set("color",[features.get("color")[0],color]);
-  getWorth();
+  //getWorth();
 }
 
 function updateAsset(type, asset) {
@@ -185,7 +185,7 @@ function updateAsset(type, asset) {
   }
   updateBorders(features.get(type),asset);
   features.set(type,asset);
-  getWorth();
+  //getWorth();
 }
 
 function mergeImages(type) {
